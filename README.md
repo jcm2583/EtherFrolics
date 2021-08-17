@@ -25,11 +25,11 @@ Create a new database called `ether-frolics` in PostgreSQL and use the `database
  
 ## Creating the .ENV file
 Create a .env file in the root of the project. This file will require several pieces of information that will need to each be acquired separately. Further instruction on obtaining these keys are provided below: 
-* `SERVER_SESSION_SECRET = **********  
-* AWS_BUCKET_NAME = **************  
-* AWS_BUCKET_REGION = ************  
-* AWS_ACCESS_KEY = ***********  
-* AWS_SECRET_KEY = ************`  
+`SERVER_SESSION_SECRET = **********\ 
+AWS_BUCKET_NAME = **************\ 
+AWS_BUCKET_REGION = ************\ 
+AWS_ACCESS_KEY = ***********\
+AWS_SECRET_KEY = ************`  
  
 First, you will need to establish the `SERVER_SESSION_SECRET` key. This will need to be longer than 8 characters or you will get a warning from the app. This website, (https://passwordsgenerator.net), can create a random password for you to use.
  
