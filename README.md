@@ -24,7 +24,7 @@ Before getting started launching this application, you should have the following
 Create a new database called `ether-frolics` in PostgreSQL and use the `database.sql` file in the root of the project to create your tables.
  
 ## Creating the .ENV file
-Create a .env file in the root of the project. This file will require several pieces of information that will need to each be acquired separately. Further instruction on obtaining these keys are provided below: 
+Create a .env file in the root of the project. This file will require several pieces of information that will need to each be acquired separately. Further instruction on obtaining these keys are provided below:\
 `SERVER_SESSION_SECRET = **********\
 AWS_BUCKET_NAME = **************\
 AWS_BUCKET_REGION = ************\
