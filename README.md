@@ -1,121 +1,96 @@
-
-# EDA Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
-
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
-
-## Use the Template for This Repository (Don't Clone)
-
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account.
-
-
-## Prerequisites
-
-Before you get started, make sure you have the following software installed on your computer:
-
+# EtherFrolics
+ 
+_Project Duration: 2 Week Sprint_
+ 
+EtherFrolics is a professional application that allows medical providers to browse medical missions around the world where anesthesia will be needed to be administered on a patient. It serves as a platform that allows providers to upload medical credentials so that they can be alerted when their credentials are close to expiring. There is also an administrator view that can verify a provider's personal and credential information and approve them to begin browsing and applying to missions that are posted by the administrator. While credentials and mission information exists on a variety of platforms, EtherFrolics is a single application that more efficiently allows a provider to track their medical credentials and connect with missions around the world.
+ 
+<!-- Live Version deployed on Heroku at: [EtherFrolics](https://ether-frolics-1.herokuapp.com/#/home/0) -->
+ 
+## Screen Shot
+ 
+![Home Page](/public/images/homepage.jpeg)
+![View Providers](/public/images/providers.jpeg)
+![Admin Solo Provider View](/public/images/adminproviders.jpeg)
+![Mission Page](/public/images/missions.jpeg)
+ 
+### Prerequisites
+Before getting started launching this application, you should have the following software installed on your computer: 
+ 
 - [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+- [Nodemon](https://nodemon.io) 
+- [PostgreSQL](https://www.postgresql.org)
+ 
+## Database Setup
+Create a new database called `ether-frolics` in PostgreSQL and use the `database.sql` file in the root of the project to create your tables.
+ 
+## Creating the .ENV file
+Create a .env file in the root of the project. This file will require several pieces of information that will need to each be acquired separately. Further instruction on obtaining these keys are provided below: 
+`SERVER_SESSION_SECRET = **********
+AWS_BUCKET_NAME = **************
+AWS_BUCKET_REGION = ************
+AWS_ACCESS_KEY = ***********
+AWS_SECRET_KEY = ************`
+ 
+First, you will need to establish the `SERVER_SESSION_SECRET` key. This will need to be longer than 8 characters or you will get a warning from the app. This website, (https://passwordsgenerator.net), can create a random password for you to use.
+ 
+### AWS s3 Bucket Setup
+This application utilizes the AWS SDK for node, and some functions declared in the ‘s3.js’ file, to upload / download images to an s3 bucket. Specific permissions that are required for this functionality are as follows, and need to be assigned to a user with ‘programmatic access’. The keys of that user are the AWS_ACCESS_KEY & AWS_SECRET_KEY mentioned above. The following permissions are set at a policy level in AWS, and assigned to the application via the keys. Permissions needed:
+getObject (Read)
+putObject (Write)
+deleteObject (Write)
+ 
+ 
+## Installation
+1. Make sure that you have created your database and tables using the `database.sql` file. Please refer to the Database Setup section above if you have not already done so.
+2. Using a code editor of your choice, run an `npm.install` command in the terminal.
+3. Next, use the command `npm run server` in your terminal to start the server. NOTE: Start the server before starting the browser.
+4. After starting the server, use the command `npm run client` in your terminal to automatically open a new browser that will run the application.
+5. If a new browser does not automatically open, start a new tab and type in `localhost3000` to use the application.
+ 
+## How to use EtherFrolics
+* A new user will be greeted at a homepage where they will have the option to either login (returning users) or register an account that is located at the bottom of the page.
+* A user will need to create a username and a password in order to use the application.
+* Both the login and registration process will be the same for administrators and providers.
+### The Provider
+* Upon logging in, a provider will be prompted to register within their profile before they can begin using the app.
+* There is a button that they can click on where they will need to fill out the following information:
+  * A General Info page with basic information including Name, DOB, Provider Role, etc.
+  * A Contact Info page that includes a Phone Number, Address, etc.
+  * A Work History page that can receive multiple work histories. There is also a button that allows for a resume pdf upload. NOTE: A user will need to click the `Attach` button below the resume upload to attach the resume and the `Add Work History Entry` button at the bottom of the page to submit the entry. This is the same process that will need to be followed for the following pages after the Work History page.
+  * A Mission History page that can also receive multiple entries. There are also buttons that allow for an image upload.
+  * An Education page that can receive multiple entries. There are buttons that allow for an image upload.
+  * A Medical Credentials page that can receive multiple entries. There are buttons that allow for an image upload.
+  * An Insurance page that can receive multiple entries. There are buttons that allow for an image upload.
+* Upon registration, a provider will be directed to a landing page where they can view and edit information about themselves in addition to view credentials. A red exclamation icon will show when a credential is within 3 months of expiring.
+* Upon review and approval from the administrator, a provider will be able to view the missions that have been posted and be able to apply to them by following the link in the table.
+### The Administrator
+* Upon logging in, the administrator will be taken to their landing page where there will be three buttons:
+  * The `PROVIDER MANAGEMENT` button will allow the admin to view registered providers. The admin can view each provider by clicking on their name or by typing their name into the search bar. A star icon will be next to provider names who the admin has approved to view missions.
+  * The `MISSION MANAGEMENT` button will allow the admin to view missions that they have posted in addition to editing those missions by swiping left on the table.
+  * The `CREATE MISSION` button will allow the admin to create a new mission that will be added to the mission table. 
 
-## Create database and table
+## Built With
+- React
+- Redux
+- Material UI
+- AWS S3
+- Node.js
+- Express.js
+- PostgreSQL
+ 
+## Acknowledgement
+- We would like to thank our client, Justin, who envisioned this application and for trusting our team to turn his idea into a reality.
+- We would also like to thank [Prime Digital Academy](www.primeacademy.io) for giving us the opportunity to take on this project.
+- We would like to give a very special thanks to our instructor, Dane Smith, who has prepared us not only for this project, but also to take on a new career in software development. 
+ 
+## Support
+If you have questions, concerns, or suggestions, please email one of our 5 developers who worked on this project:  
+[Ben Hall](https://github.com/benjamhall) - [benjamhall@gmail.com](mailto:benjamhall@gmail.com)  
 
-Create a new database called `prime_app` and create a `user` table:
+[Emry Brisky](https://github.com/eabrisky) - [eabrisky@gmail.com](mailto:eabrisky@gmail.com)  
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+[Jacob Motes](https://github.com/jcm2583) - [jmotes2583@gmail.com](mailto:jmotes2583@gmail.com)  
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+[Preston Thomas](https://github.com/eabrisky) - [preston.thomas355@gmail.com](mailto:preston.thomas355@gmail.com)  
 
-## Development Setup Instructions
-
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
-
-## Debugging
-
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
-
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
-
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
-
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
-
-## Testing Routes with Postman
-
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
-
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
-
-1. Start the server - `npm run server`
-2. Import the sample routes JSON file [v2](./PostmanPrimeSoloRoutesv2.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
-
-After running the login route above, you can try any other route you've created that requires a logged in user!
-
-## Production Build
-
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
-
-## Lay of the Land
-
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
-
-Directory Structure:
-
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+[Tucker Landis](https://github.com/TuckerLandis) - [landistuckerc@gmail.com](mailto:landistuckerc@gmail.com) 
