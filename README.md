@@ -4,7 +4,7 @@ _Project Duration: 2 Week Sprint_
  
 EtherFrolics is a professional application that allows medical providers to browse medical missions around the world where anesthesia will be needed to be administered on a patient. It serves as a platform that allows providers to upload medical credentials so that they can be alerted when their credentials are close to expiring. There is also an administrator view that can verify a provider's personal and credential information and approve them to begin browsing and applying to missions that are posted by the administrator. While credentials and mission information exists on a variety of platforms, EtherFrolics is a single application that more efficiently allows a provider to track their medical credentials and connect with missions around the world.
  
-<!-- Live Version deployed on Heroku at: [EtherFrolics](https://ether-frolics-1.herokuapp.com/#/home/0) -->
+Live Version deployed on Heroku at: [EtherFrolics](https://ether-frolics-0.herokuapp.com/)
  
 ## Screen Shot
  
